@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 export function TheHeader() {
   return (
     <nav>
-      <div class="nav-wrapper grey lighten-5">
-        <Link to="/" class="brand-logo">
+      <div className="nav-wrapper grey lighten-5">
+        <Link to="/" className="brand-logo">
           <img width={70} src="/logo.png" alt="Company logo" />
         </Link>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
