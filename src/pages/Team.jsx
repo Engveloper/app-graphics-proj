@@ -8,7 +8,6 @@ export function Team() {
     result.then((response) => {
       response.json().then(({ results }) => {
         setMembers(results);
-        console.log({ results });
       });
     });
   }, []);
@@ -17,8 +16,11 @@ export function Team() {
     <div>
       <h4 className="mb-8">Nuestro equipo</h4>
       <div className="row">
-        {members.map((member) => (
-          <div className="col s12 m3 mb-16">
+        {members.map((member, index) => (
+          <div
+            key={`${member.name.first}-${index}`}
+            className="col s12 m3 mb-16"
+          >
             <img src={member.picture.large} />
             <p className="text-bold">
               {member.name.first} {member.name.last}
