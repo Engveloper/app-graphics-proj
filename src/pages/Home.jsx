@@ -1,8 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
 import homeImage from "../resources/img/main-background.jpg";
+import M from "materialize-css/dist/js/materialize";
 
 export function Home() {
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (name.length === 0) {
+      M.toast({ html: "El nombre es requerido" });
+      return;
+    }
+    if (lastName.length === 0) {
+      M.toast({ html: "El apellido es requerido" });
+      return;
+    }
+    if (email.length === 0) {
+      M.toast({ html: "El email es requerido" });
+      return;
+    }
+    if (subject.length === 0) {
+      M.toast({ html: "El asunto es requerido" });
+      return;
+    }
+
+    M.toast({ html: "Mensaje enviado, pronto le estaremos respondiendo" });
+  };
+
   return (
     <div
       className="home-container"
@@ -24,20 +53,35 @@ export function Home() {
             <div className="card px-8 contact-card">
               <div className="card-content black-text">
                 <span className="card-title">Contáctenos</span>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="input-field col s6">
-                      <input id="firstname" type="text" className="validate" />
+                      <input
+                        id="firstname"
+                        type="text"
+                        className="validate"
+                        onChange={(e) => setName(e.target.value)}
+                      />
                       <label htmlFor="firstname">Nombre</label>
                     </div>
                     <div className="input-field col s6">
-                      <input id="lastname" type="text" className="validate" />
+                      <input
+                        id="lastname"
+                        type="text"
+                        className="validate"
+                        onChange={(e) => setLastName(e.target.value)}
+                      />
                       <label htmlFor="lastname">Apellido</label>
                     </div>
                   </div>
                   <div className="row">
                     <div className="input-field col s12">
-                      <input id="email" type="email" className="validate" />
+                      <input
+                        id="email"
+                        type="email"
+                        className="validate"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
                       <label htmlFor="email">Correo</label>
                     </div>
                   </div>
@@ -46,6 +90,7 @@ export function Home() {
                       <textarea
                         id="subject"
                         className="materialize-textarea"
+                        onChange={(e) => setSubject(e.target.value)}
                       ></textarea>
                       <label htmlFor="subject">Asunto</label>
                     </div>
